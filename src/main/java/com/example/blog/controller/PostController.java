@@ -3,9 +3,7 @@ package com.example.blog.controller;
 
 import com.example.blog.domain.Post;
 import com.example.blog.domain.User;
-import com.example.blog.dto.PostCreateRequest;
-import com.example.blog.dto.PostResponse;
-import com.example.blog.dto.PostUpdateRequest;
+import com.example.blog.dto.PostDtos;
 import com.example.blog.service.PostService;
 import com.example.blog.service.UserService;
 import jakarta.validation.Valid;
@@ -30,19 +28,19 @@ public class PostController {
     }
 
     @PostMapping
-    public PostResponse create(@RequestBody @Valid PostCreateRequest req, Principal principal) {
+    public PostDtos.PostResponse create(@RequestBody @Valid PostDtos.PostCreateRequest req, Principal principal) {
         User author = userService.findByEmailOrThrow(principal.getName());
         Post p = postService.create(req.title, req.content, author);
         return toResponse(p);
     }
 
     @GetMapping("/{id}")
-    public PostResponse get(@PathVariable Long id) {
+    public PostDtos.PostResponse get(@PathVariable Long id) {
         return toResponse(postService.get(id));
     }
 
     @PutMapping("/{id}")
-    public PostResponse update(@PathVariable Long id, @RequestBody PostUpdateRequest req, Principal principal) {
+    public PostDtos.PostResponse update(@PathVariable Long id, @RequestBody PostDtos.PostUpdateRequest req, Principal principal) {
         Post p = postService.get(id);
         // optionally check ownership: p.getAuthor().getEmail().equals(principal.getName())
         p = postService.update(p, req.title, req.content);
@@ -57,7 +55,7 @@ public class PostController {
 
     // Search, filtering, sorting, pagination
     @GetMapping
-    public Page<PostResponse> search(
+    public Page<PostDtos.PostResponse> search(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) Long authorId,
             @RequestParam(required = false) String from,
@@ -76,8 +74,8 @@ public class PostController {
         return posts.map(this::toResponse);
     }
 
-    private PostResponse toResponse(Post p) {
-        PostResponse r = new PostResponse();
+    private PostDtos.PostResponse toResponse(Post p) {
+        PostDtos.PostResponse r = new PostDtos.PostResponse();
         r.id = p.getId();
         r.title = p.getTitle();
         r.content = p.getContent();

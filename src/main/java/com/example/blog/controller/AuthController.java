@@ -2,9 +2,7 @@
 package com.example.blog.controller;
 
 import com.example.blog.domain.User;
-import com.example.blog.dto.AuthResponse;
-import com.example.blog.dto.LoginRequest;
-import com.example.blog.dto.RegisterRequest;
+import com.example.blog.dto.AuthDtos;
 import com.example.blog.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,9 +22,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public AuthResponse register(@RequestBody @Valid RegisterRequest req) {
+    public AuthDtos.AuthResponse register(@RequestBody @Valid AuthDtos.RegisterRequest req) {
         User u = userService.register(req.username, req.email, req.password);
-        AuthResponse res = new AuthResponse();
+        AuthDtos.AuthResponse res = new AuthDtos.AuthResponse();
         res.userId = u.getId();
         res.username = u.getUsername();
         res.token = "basic"; // placeholder; replace with JWT in real setup
@@ -34,12 +32,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody @Valid LoginRequest req) {
+    public AuthDtos.AuthResponse login(@RequestBody @Valid AuthDtos.LoginRequest req) {
         Authentication auth = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(req.email, req.password)
         );
         User principal = userService.findByEmailOrThrow(req.email);
-        AuthResponse res = new AuthResponse();
+        AuthDtos.AuthResponse res = new AuthDtos.AuthResponse();
         res.userId = principal.getId();
         res.username = principal.getUsername();
         res.token = "basic"; // placeholder
