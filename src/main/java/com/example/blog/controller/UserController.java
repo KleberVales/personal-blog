@@ -1,6 +1,8 @@
 package com.example.blog.controller;
 
 import com.example.blog.domain.User;
+import com.example.blog.dto.UserRegisterDTO;
+import com.example.blog.dto.UserResponseDTO;
 import com.example.blog.service.UserService;
 import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Controller;
@@ -23,13 +25,20 @@ public class UserController {
     //       endpoint for data entry
     //=================================================
 
-    @PostMapping
-    public User save(@RequestBody User user) {
-        return userService.register(
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword()
-        );
+    @PostMapping("/register")
+    public UserResponseDTO save(@RequestBody UserRegisterDTO userRegisterDTO) {
+
+        User user = userService.register(userRegisterDTO.getUsername(), userRegisterDTO.getEmail(),
+                userRegisterDTO.getPassword());
+
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+
+        userResponseDTO.setUserId(user.getId());
+        userResponseDTO.setUsername(user.getUsername());
+
+
+        return userResponseDTO;
+
     }
 
 

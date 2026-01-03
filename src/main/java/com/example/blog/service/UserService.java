@@ -13,6 +13,10 @@ public class UserService {
         this.repo = repo;
     }
 
+    //=====================================================================================
+   //                       Creating user in the database
+   //=====================================================================================
+
     public User register(String username, String email, String rawPassword) {
         User u = new User();
         u.setUsername(username);
