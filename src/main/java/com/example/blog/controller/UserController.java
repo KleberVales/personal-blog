@@ -3,7 +3,9 @@ package com.example.blog.controller;
 import com.example.blog.domain.User;
 import com.example.blog.dto.user.UserRegisterDTO;
 import com.example.blog.dto.user.UserResponseDTO;
+import com.example.blog.dto.user.UserUpdateDTO;
 import com.example.blog.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,6 +74,36 @@ public class UserController {
         );
 
         return ResponseEntity.ok(dto);
+    }
+
+    //=================================================
+    //       Update a user
+    //=================================================
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> update(
+            @PathVariable Long id,
+            @RequestBody UserUpdateDTO dto) {
+
+        User updated = userService.updateUser(id, dto);
+
+        UserResponseDTO response = new UserResponseDTO(
+                updated.getId(),
+                updated.getUsername(),
+                updated.getEmail()
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    //=================================================
+    //       Delete a user
+    //=================================================
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable Long id) {
+        userService.delete(id);
     }
 
 }
