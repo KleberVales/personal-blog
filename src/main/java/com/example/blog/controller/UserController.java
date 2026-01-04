@@ -21,7 +21,6 @@ public class UserController {
         this.userService = userService;
     }
 
-
     //=================================================
     //       endpoint for data entry
     //=================================================
@@ -105,5 +104,8 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userService.delete(id);
     }
+
+
+
 
 }

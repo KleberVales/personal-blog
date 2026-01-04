@@ -2,7 +2,6 @@ package com.example.blog.service;
 
 import com.example.blog.domain.User;
 import com.example.blog.dto.user.UserUpdateDTO;
-import com.example.blog.exception.NotFoundException;
 import com.example.blog.exception.ResourceNotFoundException;
 import com.example.blog.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -64,6 +63,7 @@ public class UserService {
         return user; // JPA faz o UPDATE automaticamente
     }
 
+
     //=====================================================================================
     //                       Delete a user
     //=====================================================================================
@@ -76,13 +76,8 @@ public class UserService {
         repo.delete(user);
     }
 
-    //=====================================================================================
-    //                       User authentication via email
-    //=====================================================================================
 
-    public User findByEmailOrThrow(String email) {
-        return repo.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
-    }
+
 
 
 }
