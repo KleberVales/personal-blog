@@ -4,6 +4,7 @@ import com.example.blog.domain.User;
 import com.example.blog.dto.user.UserRegisterDTO;
 import com.example.blog.dto.user.UserResponseDTO;
 import com.example.blog.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,6 +54,24 @@ public class UserController {
                         user.getEmail()
                 ))
                 .toList();
+    }
+
+    //=================================================
+    //       searching for a specific user
+    //=================================================
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
+
+        User user = userService.findById(id);
+
+        UserResponseDTO dto = new UserResponseDTO(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail()
+        );
+
+        return ResponseEntity.ok(dto);
     }
 
 }

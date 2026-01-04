@@ -35,5 +35,14 @@ public class UserService {
         return repo.findAll();
     }
 
+    //=====================================================================================
+    //                       searching for a specific user
+    //=====================================================================================
+
+    public User findById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
+
 
 }
