@@ -4,6 +4,8 @@ import com.example.blog.domain.User;
 import com.example.blog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -23,6 +25,14 @@ public class UserService {
         u.setEmail(email);
         u.setPasswordHash(rawPassword);
         return repo.save(u);
+    }
+
+    //=====================================================================================
+    //                       Searching for all users in the database
+    //=====================================================================================
+
+    public List<User> findAll() {
+        return repo.findAll();
     }
 
 

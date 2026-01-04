@@ -4,10 +4,9 @@ import com.example.blog.domain.User;
 import com.example.blog.dto.user.UserRegisterDTO;
 import com.example.blog.dto.user.UserResponseDTO;
 import com.example.blog.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -38,6 +37,22 @@ public class UserController {
 
         return userResponseDTO;
 
+    }
+
+    //=================================================
+    //       endpoint for data out
+    //=================================================
+
+    @GetMapping
+    public List<UserResponseDTO> list() {
+        return userService.findAll()
+                .stream()
+                .map(user -> new UserResponseDTO(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getEmail()
+                ))
+                .toList();
     }
 
 }
