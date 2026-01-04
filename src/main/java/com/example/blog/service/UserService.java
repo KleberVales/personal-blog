@@ -1,15 +1,14 @@
 package com.example.blog.service;
 
 import com.example.blog.domain.User;
-import com.example.blog.dto.UserResponseDTO;
-import com.example.blog.dto.UserUpdateDTO;
+import com.example.blog.dto.user.UserUpdateDTO;
+import com.example.blog.exception.NotFoundException;
 import com.example.blog.exception.ResourceNotFoundException;
 import com.example.blog.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -76,6 +75,14 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 
         repo.delete(user);
+    }
+
+    //=====================================================================================
+    //                       User authentication via email
+    //=====================================================================================
+
+    public User findByEmailOrThrow(String email) {
+        return repo.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
     }
 
 

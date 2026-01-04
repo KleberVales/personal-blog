@@ -1,4 +1,4 @@
-package com.example.blog.dto;
+package com.example.blog.dto.user;
 
 public class UserResponseDTO {
 

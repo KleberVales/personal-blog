@@ -1,9 +1,9 @@
 package com.example.blog.controller;
 
 import com.example.blog.domain.User;
-import com.example.blog.dto.UserRegisterDTO;
-import com.example.blog.dto.UserResponseDTO;
-import com.example.blog.dto.UserUpdateDTO;
+import com.example.blog.dto.user.UserRegisterDTO;
+import com.example.blog.dto.user.UserResponseDTO;
+import com.example.blog.dto.user.UserUpdateDTO;
 import com.example.blog.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
