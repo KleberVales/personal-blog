@@ -1,33 +1,30 @@
-package com.example.blog.domain;
-
-import jakarta.persistence.*;
+package com.example.blog.dto.post;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
-@Table(name="posts")
-public class Post {
+public class PostResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private Long id;
+    private String user;
     private String title;
     private String text;
     private LocalDateTime createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getTitle() {
@@ -52,13 +49,5 @@ public class Post {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

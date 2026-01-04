@@ -19,6 +19,9 @@ public class User {
 
     private String email;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
 
     public Long getId() {
         return id;
