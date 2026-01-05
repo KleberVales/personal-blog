@@ -18,5 +18,9 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 - **Build:** Gradle
 - **API testing:** Postman
 
+---
+
+## 🚀 Funcionalidades
+
 
 
