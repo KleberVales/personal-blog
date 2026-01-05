@@ -13,6 +13,7 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 ## 🛠 Tecnologias
 
 - **Back-end:** Java 21, Spring Boot 3
+- **Segurança:** Spring Security + roles (POSTER / COMMENTER)
 
 
 
