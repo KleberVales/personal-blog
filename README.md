@@ -25,6 +25,7 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 - Cadastro de usuários com roles:
   - `POSTER`: pode criar posts e comentários
   - `COMMENTER`: pode criar apenas comentários
-
+- Criação, leitura, atualização e exclusão de posts
+- Criação e leitura de comentários
 
 
