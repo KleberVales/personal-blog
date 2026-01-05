@@ -40,3 +40,15 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 
 ## 📁 Estrutura do projeto
 
+```text
+
+src/main/java/com/example/blog
+├── config → Configurações do Spring Security
+├── controller → Endpoints REST
+├── domain → Entidades (User, Role, Post, Comment)
+├── repository → Repositórios JPA
+├── service → Regras de negócio
+└── security → Integração UserDetailsService
+
+```
+
