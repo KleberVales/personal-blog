@@ -32,3 +32,6 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 - Estrutura de tabelas:
   - `users` (id, username, email, password)
   - `roles` (id, name)
+  - `user_roles` (relacionamento usuário ↔ role)
+  - `posts` (id, title, text, user_id)
+  - `comments` (id, text, post_id, user_id)
