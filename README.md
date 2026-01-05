@@ -52,3 +52,15 @@ src/main/java/com/example/blog
 
 ```
 
+---
+
+## ⚙️ Configuração do projeto
+
+1. Clone o repositório:
+```bash
+
+git clone https://github.com/seu-usuario/personal-blog.git
+cd personal-blog
+
+```
+
