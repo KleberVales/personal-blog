@@ -10,3 +10,6 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 
 ---
 
+## 🛠 Tecnologias
+
+
