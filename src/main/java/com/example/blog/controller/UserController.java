@@ -1,6 +1,6 @@
 package com.example.blog.controller;
 
-import com.example.blog.domain.User;
+import com.example.blog.domain.user.User;
 import com.example.blog.dto.user.UserRegisterDTO;
 import com.example.blog.dto.user.UserResponseDTO;
 import com.example.blog.dto.user.UserUpdateDTO;
@@ -29,7 +29,7 @@ public class UserController {
     public UserResponseDTO save(@RequestBody UserRegisterDTO userRegisterDTO) {
 
         User user = userService.register(userRegisterDTO.getUsername(), userRegisterDTO.getEmail(),
-                userRegisterDTO.getPassword());
+                userRegisterDTO.getPassword(), userRegisterDTO.getRole());
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();
 
@@ -52,7 +52,8 @@ public class UserController {
                 .map(user -> new UserResponseDTO(
                         user.getId(),
                         user.getUsername(),
-                        user.getEmail()
+                        user.getEmail(),
+                        user.getRole()
                 ))
                 .toList();
     }
@@ -69,7 +70,8 @@ public class UserController {
         UserResponseDTO dto = new UserResponseDTO(
                 user.getId(),
                 user.getUsername(),
-                user.getEmail()
+                user.getEmail(),
+                user.getRole()
         );
 
         return ResponseEntity.ok(dto);
@@ -89,7 +91,8 @@ public class UserController {
         UserResponseDTO response = new UserResponseDTO(
                 updated.getId(),
                 updated.getUsername(),
-                updated.getEmail()
+                updated.getEmail(),
+                updated.getRole()
         );
 
         return ResponseEntity.ok(response);

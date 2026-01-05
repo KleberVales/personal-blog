@@ -1,6 +1,7 @@
 package com.example.blog.service;
 
-import com.example.blog.domain.User;
+import com.example.blog.domain.user.Role;
+import com.example.blog.domain.user.User;
 import com.example.blog.dto.user.UserUpdateDTO;
 import com.example.blog.exception.ResourceNotFoundException;
 import com.example.blog.repository.UserRepository;
@@ -22,11 +23,12 @@ public class UserService {
     //                       Creating user in the database
     //=====================================================================================
 
-    public User register(String username, String email, String rawPassword) {
+    public User register(String username, String email, String rawPassword, Role role) {
         User u = new User();
         u.setUsername(username);
         u.setEmail(email);
         u.setPasswordHash(rawPassword);
+        u.setRole(role);
         return repo.save(u);
     }
 

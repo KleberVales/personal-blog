@@ -1,10 +1,13 @@
 package com.example.blog.dto.user;
 
+import com.example.blog.domain.user.Role;
+
 public class UserRegisterDTO {
 
     private String username;
     private String email;
     private String password;
+    private Role role;
 
     public String getUsername() {
         return username;
@@ -28,5 +31,13 @@ public class UserRegisterDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

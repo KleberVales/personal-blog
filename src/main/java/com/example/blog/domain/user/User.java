@@ -1,9 +1,9 @@
-package com.example.blog.domain;
+package com.example.blog.domain.user;
 
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +18,12 @@ public class User {
     private String password;
 
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+
 
 
 
@@ -51,5 +57,17 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
