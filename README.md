@@ -27,5 +27,6 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
   - `COMMENTER`: pode criar apenas comentários
 - Criação, leitura, atualização e exclusão de posts
 - Criação e leitura de comentários
-
+- Autenticação básica (HTTP Basic Auth)
+- Controle de autorização baseado em roles
 
