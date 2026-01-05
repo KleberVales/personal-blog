@@ -6,53 +6,45 @@
 
     - Search, filtering, and sorting functions.
  
-Um projeto de blog desenvolvido com **Java**, **Spring Boot**, **Spring Security**, **JPA/Hibernate** e **MySQL/PostgreSQL**, permitindo gerenciamento de usuários, posts e comentários, com controle de permissões.
+A blog project developed with **Java**, **Spring Boot**, **Spring Security**, **JPA/Hibernate**, and **MySQL/PostgreSQL**, allowing user, post, and comment management with permission control.
 
 ---
 
-## 🛠 Tecnologias
+## 🛠 Technologies
 
-- **Back-end:** Java 21, Spring Boot 3
-- **Segurança:** Spring Security + roles (POSTER / COMMENTER)
-- **Banco de dados:** PostgreSQL
-- **Build:** Gradle
-- **API testing:** Postman
+- **Back-end:** Java 21, Spring Boot 3  
+- **Security:** Spring Security + roles (POSTER / COMMENTER)  
+- **Database:** PostgreSQL  
+- **Build:** Gradle  
+- **API testing:** Postman  
 
 ---
 
-## 🚀 Funcionalidades
+## 🚀 Features
 
-- Cadastro de usuários com roles:
-  - `POSTER`: pode criar posts e comentários
-  - `COMMENTER`: pode criar apenas comentários
-- Criação, leitura, atualização e exclusão de posts
-- Criação e leitura de comentários
-- Autenticação básica (HTTP Basic Auth)
-- Controle de autorização baseado em roles
-- Estrutura de tabelas:
+- User registration with roles:
+  - `POSTER`: can create posts and comments
+  - `COMMENTER`: can only create comments
+- Create, read, update, and delete posts
+- Create and read comments
+- Basic authentication (HTTP Basic Auth)
+- Role-based authorization control
+- Table structure:
   - `users` (id, username, email, password)
   - `roles` (id, name)
-  - `user_roles` (relacionamento usuário ↔ role)
+  - `user_roles` (user ↔ role relationship)
   - `posts` (id, title, text, user_id)
   - `comments` (id, text, post_id, user_id)
 
 ---
 
-## 📁 Estrutura do projeto
+## 📁 Project Structure
 
 ```text
-
 src/main/java/com/example/blog
-├── config → Configurações do Spring Security
-├── controller → Endpoints REST
-├── domain → Entidades (User, Role, Post, Comment)
-├── repository → Repositórios JPA
-├── service → Regras de negócio
-└── security → Integração UserDetailsService
-
-```
-
----
-
-
-
+├── config → Spring Security configurations
+├── controller → REST endpoints
+├── domain → Entities (User, Role, Post, Comment)
+├── repository → JPA repositories
+├── service → Business logic
+└── security → UserDetailsService integration
