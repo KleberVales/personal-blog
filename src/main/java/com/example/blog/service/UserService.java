@@ -6,17 +6,36 @@ import com.example.blog.dto.user.UserUpdateDTO;
 import com.example.blog.exception.ResourceNotFoundException;
 import com.example.blog.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository repo;
 
     public UserService(UserRepository repo) {
         this.repo = repo;
+    }
+
+    //==============================================================================================
+    //                   Load the user when someone tries to log in
+    //==============================================================================================
+
+    @Override
+    public UserDetails loadUserByUsername(String usernameOrEmail)
+            throws UsernameNotFoundException {
+
+        User user = repo.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("Usuário não encontrado")
+                );
+
+        return user; // User IMPLEMENTA UserDetails
     }
 
     //=====================================================================================
