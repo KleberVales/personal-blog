@@ -16,6 +16,7 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 - **Segurança:** Spring Security + roles (POSTER / COMMENTER)
 - **Banco de dados:** PostgreSQL
 - **Build:** Gradle
+- **API testing:** Postman
 
 
 
