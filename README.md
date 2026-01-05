@@ -29,4 +29,6 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 - Criação e leitura de comentários
 - Autenticação básica (HTTP Basic Auth)
 - Controle de autorização baseado em roles
-
+- Estrutura de tabelas:
+  - `users` (id, username, email, password)
+  - `roles` (id, name)
