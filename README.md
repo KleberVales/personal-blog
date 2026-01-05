@@ -35,3 +35,8 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
   - `user_roles` (relacionamento usuário ↔ role)
   - `posts` (id, title, text, user_id)
   - `comments` (id, text, post_id, user_id)
+
+---
+
+## 📁 Estrutura do projeto
+
