@@ -15,6 +15,7 @@ Um projeto de blog simples desenvolvido com **Java**, **Spring Boot**, **Spring 
 - **Back-end:** Java 21, Spring Boot 3
 - **Segurança:** Spring Security + roles (POSTER / COMMENTER)
 - **Banco de dados:** PostgreSQL
+- **Build:** Gradle
 
 
 
