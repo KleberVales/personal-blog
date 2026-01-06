@@ -32,7 +32,7 @@ public class AuthController {
         if (!encoder.matches(req.password(), user.getPassword())) {
             return ResponseEntity.status(401).build();
         }
-        Set<String> roles = Set.of(user.getRoles().name());
+        Set<String> roles = Set.of(user.getRole().name());
         String token = jwt.createToken(user.getUsername(), roles);
         return ResponseEntity.ok(new AuthResponseDTO(token, "Bearer"));
     }

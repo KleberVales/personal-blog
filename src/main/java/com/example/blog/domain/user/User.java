@@ -21,17 +21,16 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role roles;
+    private Role role;
 
     // ================= UserDetails =================
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_" + roles.name());
+        return List.of(() -> "ROLE_" + role.name());
     }
 
-    @Override
-    public String getPassword() {
+    public String getPasswordHash() {
         return passwordHash;
     }
 
@@ -80,7 +79,7 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public String getPasswordHash() {
+    public String getPassword() {
         return passwordHash;
     }
 
@@ -88,12 +87,12 @@ public class User implements UserDetails {
         this.passwordHash = passwordHash;
     }
 
-    public Role getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Role role) {
-        this.roles = role;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
 

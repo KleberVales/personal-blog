@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
         u.setUsername(username);
         u.setEmail(email);
         u.setPasswordHash(rawPassword);
-        u.setRoles(role);
+        u.setRole(role);
         return repo.save(u);
     }
 
