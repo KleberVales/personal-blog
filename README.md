@@ -5,6 +5,9 @@
     - Users can register, create posts, and comment.
 
     - Search, filtering, and sorting functions.
+
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+
  
 A blog project developed with **Java**, **Spring Boot**, **Spring Security**, **JPA/Hibernate**, and **MySQL/PostgreSQL**, allowing user, post, and comment management with permission control.
 
