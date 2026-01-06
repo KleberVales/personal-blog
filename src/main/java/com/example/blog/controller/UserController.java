@@ -53,7 +53,7 @@ public class UserController {
                         user.getId(),
                         user.getUsername(),
                         user.getEmail(),
-                        user.getRole()
+                        user.getRoles()
                 ))
                 .toList();
     }
@@ -71,7 +71,7 @@ public class UserController {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getRole()
+                user.getRoles()
         );
 
         return ResponseEntity.ok(dto);
@@ -92,7 +92,7 @@ public class UserController {
                 updated.getId(),
                 updated.getUsername(),
                 updated.getEmail(),
-                updated.getRole()
+                updated.getRoles()
         );
 
         return ResponseEntity.ok(response);

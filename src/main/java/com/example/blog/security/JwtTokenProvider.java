@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
-    private final Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(System.getenv().getOrDefault("JWT_SECRET_BASE64", "c3VwZXItc2VjdXJlLWp3dC1zZWNyZXQta2V5LTEyMzQ1Njc4OTA=")));
+    private final Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(System.getenv().getOrDefault("JWT_SECRET_BASE64", "LkH9pQ6nXyV2wZ8rT4mF7cB1aN3jK5sP8qR0tU2vW4xY6zA9bC1dE3fG5hJ7kM9oLpQ2rS4tU6vW8xY0")));
     private final long validityInMs = 1000L * 60 * 60 * 24; // 24h
 
     public String createToken(String username, Set<String> roles) {
