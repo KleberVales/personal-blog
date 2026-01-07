@@ -21,19 +21,7 @@ public class PostController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<PostResponseDTO> list() {
-        return service.findAll().stream()
-                .map(p -> new PostResponseDTO(
-                        p.getId(),
-                        p.getTitle(),
-                        p.getContent(),
-                        p.getAuthor().getUsername(),
-                        p.getCreatedAt()
-                ))
-                .toList();
-    }
-
+    //==================== Insert the table ====================================
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN','POSTER')")
@@ -50,5 +38,45 @@ public class PostController {
                 post.getCreatedAt()
         );
     }
+
+    //===================== Read the table ===============================
+
+    @GetMapping
+    public List<PostResponseDTO> list() {
+        return service.findAll().stream()
+                .map(p -> new PostResponseDTO(
+                        p.getId(),
+                        p.getTitle(),
+                        p.getContent(),
+                        p.getAuthor().getUsername(),
+                        p.getCreatedAt()
+                ))
+                .toList();
+    }
+
+
+
+    //======================= Update the table =======================================
+
+    @PutMapping("/{id}")
+    public PostResponseDTO update(
+            @PathVariable Long id,
+            @RequestBody PostCreateDTO dto,
+            Authentication auth
+    ) {
+        boolean isAdmin = auth.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+
+        Post post = service.update(id, dto, auth.getName(), isAdmin);
+        return new PostResponseDTO(
+                post.getId(),
+                post.getTitle(),
+                post.getContent(),
+                post.getAuthor().getUsername(),
+                post.getCreatedAt()
+        );
+    }
+
+
 }
 
