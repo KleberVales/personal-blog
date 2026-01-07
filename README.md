@@ -53,3 +53,9 @@ src/main/java/com/example/blog
 ├── repository → JPA repositories
 ├── service → Business logic
 └── security → UserDetailsService integration
+
+```
+
+---
+
+## ✉️ Contact
