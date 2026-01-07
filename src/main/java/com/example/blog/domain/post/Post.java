@@ -1,5 +1,6 @@
 package com.example.blog.domain.post;
 
+import com.example.blog.dto.user.UserRegisterDTO;
 import jakarta.persistence.*;
 import com.example.blog.domain.user.User;
 
@@ -40,5 +41,26 @@ public class Post {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public User getAuthor() {
+        return author;
+
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
