@@ -3,6 +3,7 @@ package com.example.blog.service;
 import com.example.blog.domain.post.Post;
 import com.example.blog.domain.user.User;
 import com.example.blog.dto.post.PostCreateDTO;
+import com.example.blog.exception.ResourceNotFoundException;
 import com.example.blog.repository.PostRepository;
 import com.example.blog.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,16 @@ public class PostService {
         post.setTitle(dto.title());
         post.setContent(dto.content());
         return repo.save(post);
+    }
+
+    //================ Delete ===============================================
+
+    public void delete(Long id) {
+        Post post = repo.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Post não encontrado"));
+
+        repo.delete(post);
     }
 
 }

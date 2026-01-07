@@ -77,6 +77,15 @@ public class PostController {
         );
     }
 
+    //====================== Delete Post ============================================
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
+
 
 }
 
