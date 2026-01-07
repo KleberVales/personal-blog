@@ -66,5 +66,8 @@ Connect with me:
 **Kleber Vales**  
 *Java & Spring Software Engineer*
 
+Cloud | DevOps | Docker | Kubernetes | Git/GitHub | Scrum | Generative AI
+
+
 
 
