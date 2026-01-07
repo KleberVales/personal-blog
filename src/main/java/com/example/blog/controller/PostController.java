@@ -33,6 +33,7 @@ public class PostController {
                 .toList();
     }
 
+    
     @PostMapping
     public PostResponseDTO create(
             @RequestBody PostCreateDTO dto,
