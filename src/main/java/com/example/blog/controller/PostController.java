@@ -4,6 +4,7 @@ import com.example.blog.domain.post.Post;
 import com.example.blog.dto.post.PostCreateDTO;
 import com.example.blog.dto.post.PostResponseDTO;
 import com.example.blog.service.PostService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
@@ -33,8 +34,9 @@ public class PostController {
                 .toList();
     }
 
-    
+
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN','POSTER')")
     public PostResponseDTO create(
             @RequestBody PostCreateDTO dto,
             Authentication auth
