@@ -1,46 +1,42 @@
-// controller/AuthController.java
 package com.example.blog.controller;
 
-import com.example.blog.domain.User;
-import com.example.blog.dto.AuthDtos;
-import com.example.blog.service.UserService;
-import jakarta.validation.Valid;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import com.example.blog.dto.auth.AuthRequestDTO;
+import com.example.blog.dto.auth.AuthResponseDTO;
+import com.example.blog.repository.UserRepository;
+import com.example.blog.security.JwtTokenProvider;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import java.util.Set;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
-    private final UserService userService;
-    private final AuthenticationManager authManager; // if not auto-configured, wire differently
 
-    public AuthController(UserService userService, AuthenticationManager authManager) {
-        this.userService = userService;
-        this.authManager = authManager;
-    }
+    private final UserRepository repo;
+    private final PasswordEncoder encoder;
+    private final JwtTokenProvider jwt;
 
-    @PostMapping("/register")
-    public AuthDtos.AuthResponse register(@RequestBody @Valid AuthDtos.RegisterRequest req) {
-        User u = userService.register(req.username, req.email, req.password);
-        AuthDtos.AuthResponse res = new AuthDtos.AuthResponse();
-        res.userId = u.getId();
-        res.username = u.getUsername();
-        res.token = "basic"; // placeholder; replace with JWT in real setup
-        return res;
+    public AuthController(UserRepository repo, PasswordEncoder encoder, JwtTokenProvider jwt) {
+        this.repo = repo; this.encoder = encoder; this.jwt = jwt;
     }
 
     @PostMapping("/login")
-    public AuthDtos.AuthResponse login(@RequestBody @Valid AuthDtos.LoginRequest req) {
-        Authentication auth = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(req.email, req.password)
-        );
-        User principal = userService.findByEmailOrThrow(req.email);
-        AuthDtos.AuthResponse res = new AuthDtos.AuthResponse();
-        res.userId = principal.getId();
-        res.username = principal.getUsername();
-        res.token = "basic"; // placeholder
-        return res;
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody AuthRequestDTO req) {
+        // implementar autenticação manual simples: buscar user por username/email e comparar password
+        var userOpt = repo.findByUsernameOrEmail(req.usernameOrEmail(), req.usernameOrEmail());
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(401).build();
+        }
+        var user = userOpt.get();
+        if (!encoder.matches(req.password(), user.getPassword())) {
+            return ResponseEntity.status(401).build();
+        }
+        Set<String> roles = Set.of(user.getRole().name());
+        String token = jwt.createToken(user.getUsername(), roles);
+        return ResponseEntity.ok(new AuthResponseDTO(token, "Bearer"));
     }
+
+
 }
+

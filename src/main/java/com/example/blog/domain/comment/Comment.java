@@ -1,31 +1,48 @@
-// domain/Post.java
-package com.example.blog.domain;
+package com.example.blog.domain.comment;
 
+import com.example.blog.domain.post.Post;
+import com.example.blog.domain.user.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import java.time.Instant;
 
+
 @Entity
-@Table(name = "posts", indexes = {
-        @Index(name = "idx_posts_title", columnList = "title"),
-        @Index(name = "idx_posts_created_at", columnList = "createdAt")
-})
-public class Post {
+@Table(name = "comments")
+public class Comment {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    private String title;
-
-    @Column(columnDefinition = "TEXT")
-    @NotBlank
+    @Column(nullable = false, length = 2000)
     private String content;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_comments_post"))
+    private Post post;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_comments_user"))
     private User author;
 
-    private Instant createdAt = Instant.now();
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
+
+    @Column(nullable = false)
     private Instant updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        Instant now = Instant.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = Instant.now();
+    }
 
     // getters/setters
 
@@ -38,14 +55,6 @@ public class Post {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getContent() {
         return content;
     }
@@ -54,8 +63,17 @@ public class Post {
         this.content = content;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public User getAuthor() {
         return author;
+
     }
 
     public void setAuthor(User author) {
@@ -76,5 +94,7 @@ public class Post {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+
     }
 }
+
