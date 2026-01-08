@@ -5,6 +5,7 @@ import com.example.blog.domain.user.User;
 import jakarta.persistence.*;
 import java.time.Instant;
 
+
 @Entity
 @Table(name = "comments")
 public class Comment {
@@ -72,6 +73,7 @@ public class Comment {
 
     public User getAuthor() {
         return author;
+
     }
 
     public void setAuthor(User author) {
@@ -92,6 +94,7 @@ public class Comment {
 
     public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
+
     }
 }
 
