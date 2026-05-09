@@ -61,7 +61,7 @@ src/main/java/com/example/blog
 ## ✉️ Contact
 
 Connect with me:  
-[LinkedIn](https://www.linkedi [GitHub](https://github.com/KleberVales)
+[LinkedIn](https [GitHub](https://github.com/KleberVales)
 
 **Kleber Vales**  
 *Java & Spring Software Engineer*
