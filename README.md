@@ -68,5 +68,3 @@ Connect with me:
 *Java & Spring Software Engineer*
 
 Cloud | DevOps | Docker | Kubernetes | Git/GitHub | Scrum | Generative AI
-
-🏆 **Oracle 
