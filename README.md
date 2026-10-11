@@ -70,4 +70,4 @@ Connect with me:
 Cloud | DevOps | Docker | Kubernetes | Git/GitHub | Scrum | Generative AI
 
 🏆 **Oracle Certified Associate – Java SE 7 Programmer**  
-🏆 **Microsoft Technology Associate 
+🏆 **Microsoft Technology
