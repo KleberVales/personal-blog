@@ -69,4 +69,4 @@ Connect with me:
 
 Cloud | DevOps | Docker | Kubernetes | Git/GitHub | Scrum | Generative AI
 
-🏆 **Oracle Certified Associate – Java
+🏆 **Oracle Certified Associate
