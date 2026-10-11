@@ -76,7 +76,7 @@ Cloud | DevOps | Docker | Kubernetes | Git/GitHub | Scrum | Generative AI
 🏆 **Oracle Cloud Infrastructure 2025 – Generative AI Professional**
 
 🎓 **Bachelor's Degree in Computer Science**  
-🎓 **MBA 
+
 
 
 
